@@ -1,11 +1,15 @@
-package id.edupay.customer.di
+package id.movie.tmdb.di
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
-import id.edupay.customer.network.Rx3UserRepo
+import id.movie.tmdb.BuildConfig
+import id.movie.tmdb.repository.MovieRepository
+import id.movie.tmdb.screen.DetailMovieViewModel
 import id.movie.tmdb.screen.MainViewModel
-import okhttp3.OkHttpClient
+import id.movie.tmdb.screen.genrescreen.GenreViewModel
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.experimental.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -20,7 +24,7 @@ val networkModule = module {
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-    return Retrofit.Builder().baseUrl("http://www.mocky.io/").client(okHttpClient)
+    return Retrofit.Builder().baseUrl("https://api.themoviedb.org/3/").client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .build()
@@ -28,16 +32,46 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
 
 
 fun provideOkHttpClient(): OkHttpClient {
-    return OkHttpClient().newBuilder().addInterceptor(
-        HttpLoggingInterceptor().setLevel(
-            HttpLoggingInterceptor.Level.BODY)).build()
+
+    var okHttpClient = OkHttpClient().newBuilder()
+    okHttpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        .build()
+    okHttpClient.addInterceptor(object : Interceptor {
+
+
+        override fun intercept(chain: Interceptor.Chain): Response {
+            val original: Request = chain.request()
+            val originalHttpUrl: HttpUrl = original.url
+            val url = originalHttpUrl.newBuilder()
+                .addQueryParameter("api_key", BuildConfig.TMDB_API_KEY)
+                .addQueryParameter("language", "en-US")
+                .build()
+
+            val requestBuilder: Request.Builder = original.newBuilder()
+                .url(url)
+            val request: Request = requestBuilder.build()
+            return chain.proceed(request)
+        }
+    })
+
+    return okHttpClient.build()
+
 }
 
 
-fun provideUserRepoRxJava3(retrofit: Retrofit): Rx3UserRepo = retrofit.create(Rx3UserRepo::class.java)
+fun provideUserRepoRxJava3(retrofit: Retrofit): MovieRepository = retrofit.create(MovieRepository::class.java)
 
 private val viewModelModules = module {
-    viewModel<MainViewModel>()
+    viewModel {
+        MainViewModel(get())
+    }
+    viewModel {
+        GenreViewModel(get())
+    }
+
+    viewModel {
+        DetailMovieViewModel(get())
+    }
 }
 
 val appModules = listOf(networkModule, viewModelModules)

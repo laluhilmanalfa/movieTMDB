@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:rounecard_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+        <variable
+            name="data"
+            type="id.movie.tmdb.model.GenreModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="70dp">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/genre_adapter_container_view"
+            rounecard_view:cardCornerRadius="7dp"
+            android:background="#80808080"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="22sp"
+                android:text="@{data.name}"
+                android:layout_gravity="center"
+                tools:text="tekklsk" />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

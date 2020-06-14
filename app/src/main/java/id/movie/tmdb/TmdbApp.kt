@@ -1,7 +1,7 @@
 package id.movie.tmdb
 
 import android.app.Application
-import id.edupay.customer.di.appModules
+import id.movie.tmdb.di.appModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 

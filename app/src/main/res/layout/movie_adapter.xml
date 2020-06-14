@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:rounecard_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+        <variable
+            name="data"
+            type="id.movie.tmdb.model.MovieModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        android:padding="5dp"
+        android:background="?selectableItemBackground">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/genre_adapter_container_view"
+            rounecard_view:cardCornerRadius="7dp"
+            android:background="#80808080"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/movie_adapter_image_thumbnail"
+                    android:scaleType="fitXY"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="175dp">
+
+                </ImageView>
+
+
+
+                <ImageView
+                    android:id="@+id/movie_adapter_rating_image"
+                    android:src="@drawable/ic_star"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_5"
+                    app:layout_constraintTop_toBottomOf="@id/movie_adapter_image_thumbnail"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp">
+                </ImageView>
+
+
+                <TextView
+
+                    android:id="@+id/movie_adapter_rating_text_view"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    app:layout_constraintLeft_toRightOf="@id/movie_adapter_rating_image"
+                    app:layout_constraintTop_toTopOf="@id/movie_adapter_rating_image"
+                    app:layout_constraintBottom_toBottomOf="@id/movie_adapter_rating_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp"
+                    android:text="@{Double.toString(data.vote_average)}"
+                    tools:text="12" />
+
+                <TextView
+                    android:id="@+id/movie_adapter_title"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_5"
+                    android:layout_marginRight="@dimen/margin_5"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movie_adapter_rating_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="13sp"
+                    android:maxLines="2"
+                    android:textStyle="bold"
+                    android:text="@{data.title}"
+                    tools:text="12" />
+
+
+                <TextView
+                    android:id="@+id/movie_adapter_year"
+                    android:layout_margin="@dimen/margin_5"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movie_adapter_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="13sp"
+                    android:text="@{data.release_date.subSequence(0,4)}"
+                    tools:text="12" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+        <import type="android.view.View" />
+
+        <import type="id.movie.tmdb.screen.DetailMovieViewModel" />
+        <variable
+            name="viewModel"
+            type="id.movie.tmdb.screen.DetailMovieViewModel" />
+    </data>
+
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:visibility="visible"
+                android:id="@+id/shimmer_video_container"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                shimmer:duration="800">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:orientation="vertical">
+                    <include layout="@layout/video_placeholder_layout" />
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:autoPlay="false"
+                app:showFullScreenButton="false"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:visibility="visible"
+                android:id="@+id/shimmer_movie_container"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="250dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                shimmer:duration="800">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <include layout="@layout/movie_detail_placeholder_layout" />
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/detail_movie_title"
+                android:layout_marginLeft="@dimen/margin_5"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="260dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="@{viewModel.movieDetailModel.original_title.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@android:color/black"
+                tools:text="@string/sample_title">
+            </TextView>
+
+
+
+
+            <TextView
+                android:id="@+id/detail_movie_year"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_marginLeft="@dimen/margin_5"
+                app:layout_constraintTop_toBottomOf="@+id/detail_movie_title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textColor="@android:color/black"
+                android:text="@{viewModel.movieDetailModel.release_date.substring(0,4)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/sample_year">
+
+            </TextView>
+
+            <ImageView
+                android:layout_marginLeft="@dimen/margin_5"
+                android:id="@+id/detail_movie_poster"
+                android:layout_marginTop="@dimen/margin_5"
+                app:layout_constraintTop_toBottomOf="@+id/detail_movie_year"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_width="125dp"
+                android:layout_height="200dp">
+
+            </ImageView>
+
+            <TextView
+                android:textColor="@android:color/black"
+                android:id="@+id/detail_movie_overview"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:layout_marginRight="@dimen/margin_5"
+                app:layout_constraintLeft_toRightOf="@+id/detail_movie_poster"
+                app:layout_constraintTop_toTopOf="@+id/detail_movie_poster"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="@{viewModel.movieDetailModel.overview}"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                tools:text="@string/sample_overview">
+
+            </TextView>
+
+
+
+            <TextView
+                android:textColor="@android:color/black"
+                android:id="@+id/detail_movie_genre_title"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:layout_marginRight="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_10"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_movie_poster"
+                android:text="Genres"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/genre">
+
+            </TextView>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/movie_detail_chip_group"
+                android:layout_marginLeft="@dimen/margin_5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_movie_genre_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5">
+
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+            <ImageView
+                android:layout_marginTop="@dimen/margin_10"
+                android:id="@+id/movie_detail_rating_image"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_star"
+                android:visibility="invisible"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_chip_group"
+                app:layout_constraintRight_toLeftOf="@+id/movie_detail_vote_image"
+                android:layout_width="20dp"
+                android:layout_height="20dp">
+            </ImageView>
+
+
+
+
+            <ImageView
+                android:visibility="invisible"
+                android:layout_marginTop="@dimen/margin_10"
+                android:src="@drawable/ic_user"
+                android:id="@+id/movie_detail_vote_image"
+                app:layout_constraintLeft_toRightOf="@+id/movie_detail_rating_image"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_chip_group"
+                app:layout_constraintRight_toLeftOf="@+id/movie_detail_popularity_image"
+                android:layout_width="20dp"
+                android:layout_height="20dp">
+
+            </ImageView>
+
+            <ImageView
+                android:visibility="invisible"
+                android:src="@drawable/ic_dolar"
+                android:layout_marginTop="@dimen/margin_10"
+                android:id="@+id/movie_detail_popularity_image"
+                app:layout_constraintLeft_toRightOf="@+id/movie_detail_vote_image"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_chip_group"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="20dp"
+                android:layout_height="20dp">
+
+            </ImageView>
+
+
+            <TextView
+                android:id="@+id/movie_detail_rating_text_view"
+                app:layout_constraintLeft_toLeftOf="@+id/movie_detail_rating_image"
+                app:layout_constraintRight_toRightOf="@+id/movie_detail_rating_image"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_rating_image"
+                android:layout_marginTop="@dimen/margin_5"
+                tools:text="@string/sample_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/movie_detail_vote_text_view"
+                app:layout_constraintLeft_toLeftOf="@+id/movie_detail_vote_image"
+                app:layout_constraintRight_toRightOf="@+id/movie_detail_vote_image"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_vote_image"
+                android:layout_marginTop="@dimen/margin_5"
+                tools:text="@string/sample_vote_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/movie_detail_popularity_text_view"
+                app:layout_constraintLeft_toLeftOf="@+id/movie_detail_popularity_image"
+                app:layout_constraintRight_toRightOf="@+id/movie_detail_popularity_image"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_popularity_image"
+                android:layout_marginTop="5dp"
+                tools:text="@string/sample_popularity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:textColor="@android:color/black"
+                android:id="@+id/detail_movie_comment_title"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:layout_marginRight="@dimen/margin_10"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_popularity_text_view"
+                android:text="Reviews "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/review">
+
+            </TextView>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/movie_detail_recycler"
+                android:layout_marginTop="@dimen/margin_5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_movie_comment_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/movie_detail_no_review_found"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_movie_comment_title"
+                android:text="@string/no_review"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+            </TextView>
+
+
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:visibility="visible"
+                android:id="@+id/shimmer_review_container"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                shimmer:duration="800">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <include layout="@layout/data_placeholder_layout" />
+                    <include layout="@layout/data_placeholder_layout" />
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </ScrollView>
+
+</layout>

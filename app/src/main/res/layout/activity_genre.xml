@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:shimmer="http://schemas.android.com/apk/res-auto">
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <data>
         <import type="android.view.View" />
 
-        <import type="id.movie.tmdb.screen.MainViewModel" />
+        <import type="id.movie.tmdb.screen.genrescreen.GenreViewModel" />
         <variable
             name="viewModel"
-            type="id.movie.tmdb.screen.MainViewModel" />
+            type="id.movie.tmdb.screen.genrescreen.GenreViewModel" />
     </data>
 
 
@@ -19,34 +19,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-     <androidx.recyclerview.widget.RecyclerView
-         android:id="@+id/main_list_movie_recycler"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         app:layout_constraintLeft_toLeftOf="parent"
-         app:layout_constraintRight_toRightOf="parent"
-         app:layout_constraintTop_toTopOf="parent"
-         app:layout_constraintBottom_toBottomOf="parent">
-
-     </androidx.recyclerview.widget.RecyclerView>
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/main_bottom_loading"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/genre_list_movie_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="30dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:lottie_loop="true"
-            app:lottie_fileName="loading.json"
-            app:lottie_autoPlay="true"
-            android:visibility="gone"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
+        </androidx.recyclerview.widget.RecyclerView>
 
         <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/main_center_loading"
+            android:id="@+id/genre_center_loading"
             android:visibility="visible"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -66,9 +51,6 @@
             </LinearLayout>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
-
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
