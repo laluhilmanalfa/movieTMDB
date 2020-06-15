@@ -10,6 +10,12 @@ This project using MVVM architecture,  following android jetpack and using RxJav
 
 Since local.properties is place to save credential key, so if you want To run this project please download [local.properties](https://drive.google.com/file/d/14Mc2oF5D6idhm3SKKT4_eikil6u1WqV6/view)
 
+## Screenshoot
+
+![List Genre Screen](screenshot/ssgenre.jpg)
+![List Movie Screen](screenshot/sslistmovie.jpg)
+![Detail Screen](screenshot/ssmoviedetail.jpg)
+
 ## Built With
 
 * [LottieAnimation](https://github.com/airbnb/lottie-android) - For Loading Animation
@@ -20,7 +26,7 @@ Since local.properties is place to save credential key, so if you want To run th
 
 
 ## Authors
-* **Lalu Hilman Alfarisyi** - *Initial work* - [PurpleBooth](https://github.com/laluhilmanalfa)
+* **Lalu Hilman Alfarisyi** - *Initial work* - [laluhilmanalfa](https://github.com/laluhilmanalfa)
 
 
 
