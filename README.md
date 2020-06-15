@@ -11,9 +11,7 @@ This project using MVVM architecture,  following android jetpack and using RxJav
 Since local.properties is place to save credential key, so if you want To run this project please download [local.properties](https://drive.google.com/file/d/14Mc2oF5D6idhm3SKKT4_eikil6u1WqV6/view)
 
 ## Screenshoot
-<img src="https://laluhilman.com/images/ssgenre.jpeg"  width="250"/>
-<img src="https://laluhilman.com/images/sslistmovie.jpeg"  width="250"/>
-<img src="https://laluhilman.com/images/ssmoviedetail.jpeg"  width="250"/>
+<img src="https://laluhilman.com/images/ssgenre.jpeg"  width="250"/> <img src="https://laluhilman.com/images/sslistmovie.jpeg"  width="250"/> <img src="https://laluhilman.com/images/ssmoviedetail.jpeg"  width="250"/>
 
 
 ## Built With
