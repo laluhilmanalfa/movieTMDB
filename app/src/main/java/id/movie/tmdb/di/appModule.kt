@@ -43,7 +43,7 @@ fun provideOkHttpClient(): OkHttpClient {
             val original: Request = chain.request()
             val originalHttpUrl: HttpUrl = original.url
             val url = originalHttpUrl.newBuilder()
-                .addQueryParameter("api_key", BuildConfig.TMDB_API_KEY)
+                .addQueryParameter("api_key", "387344049ef5720406cb6aa63f9aa49d")
                 .addQueryParameter("language", "en-US")
                 .build()
 

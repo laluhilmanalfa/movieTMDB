@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private var itemSelectedListener = object : ItemSelectedListener{
         override fun onItemSelectedListener(itemSelected: Object) {
-            startActivity(DetailMovieActivity.createIntentActivity(this@MainActivity, (itemSelected as MovieModel).id))
+//            startActivity(DetailMovieActivity.createIntentActivity(this@MainActivity, (itemSelected as MovieModel).id))
         }
 
     }

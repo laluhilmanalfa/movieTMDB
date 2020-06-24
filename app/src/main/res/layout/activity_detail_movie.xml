@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:shimmer="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-
-    <data>
-        <import type="android.view.View" />
-
-        <import type="id.movie.tmdb.screen.DetailMovieViewModel" />
-        <variable
-            name="viewModel"
-            type="id.movie.tmdb.screen.DetailMovieViewModel" />
-    </data>
-
-
-    <ScrollView
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:visibility="visible"
@@ -310,8 +292,3 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-    </ScrollView>
-
-</layout>
