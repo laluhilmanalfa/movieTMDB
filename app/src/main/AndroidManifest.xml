@@ -3,6 +3,11 @@
     package="id.movie.tmdb">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+
+
+
+    
     <application
         android:name=".TmdbApp"
         android:allowBackup="true"
